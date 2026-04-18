@@ -13,10 +13,10 @@ export default async function HomePage() {
   try {
     const sql = getDb();
     const [projectRows, settingsRows] = await Promise.all([
-      sql`SELECT * FROM projects WHERE featured = 1 LIMIT 6` as Promise<Project[]>,
-      sql`SELECT key, value FROM settings` as Promise<{ key: string; value: string }[]>,
+      sql`SELECT * FROM projects WHERE featured = 1 LIMIT 6`,
+      sql`SELECT key, value FROM settings`,
     ]);
-    featuredProjects = projectRows;
+    featuredProjects = projectRows as unknown as Project[];
     for (const r of settingsRows) settings[r.key] = r.value;
   } catch {
     // DB not ready yet — page renders with defaults baked into HomeClient

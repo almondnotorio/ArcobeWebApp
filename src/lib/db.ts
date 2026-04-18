@@ -12,7 +12,8 @@ export function getDb() {
   return sql;
 }
 
-async function initSchema(sql: ReturnType<typeof neon>) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+async function initSchema(sql: any) {
   await sql`
     CREATE TABLE IF NOT EXISTS projects (
       id        SERIAL PRIMARY KEY,

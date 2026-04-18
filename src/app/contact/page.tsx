@@ -7,7 +7,7 @@ export const dynamic = 'force-dynamic';
 
 export default async function ContactPage() {
   const sql = getDb();
-  const settingsRows = await sql`SELECT key, value FROM settings` as { key: string; value: string }[];
+  const settingsRows = await sql`SELECT key, value FROM settings` as unknown as { key: string; value: string }[];
   const settings: Record<string, string> = {};
   for (const r of settingsRows) settings[r.key] = r.value;
 

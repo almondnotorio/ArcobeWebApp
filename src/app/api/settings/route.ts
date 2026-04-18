@@ -4,7 +4,7 @@ import { isAuthenticated } from '@/lib/auth';
 
 export async function GET() {
   const sql = getDb();
-  const rows = await sql`SELECT key, value FROM settings` as { key: string; value: string }[];
+  const rows = await sql`SELECT key, value FROM settings` as unknown as { key: string; value: string }[];
   const settings: Record<string, string> = {};
   for (const row of rows) settings[row.key] = row.value;
   return NextResponse.json(settings);

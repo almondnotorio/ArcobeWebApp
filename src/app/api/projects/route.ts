@@ -12,13 +12,13 @@ export async function GET(req: NextRequest) {
   let projects: Project[];
 
   if (category && category !== 'All' && featured) {
-    projects = await sql`SELECT * FROM projects WHERE category = ${category} AND featured = 1 ORDER BY created_at DESC` as Project[];
+    projects = await sql`SELECT * FROM projects WHERE category = ${category} AND featured = 1 ORDER BY created_at DESC` as unknown as Project[];
   } else if (category && category !== 'All') {
-    projects = await sql`SELECT * FROM projects WHERE category = ${category} ORDER BY created_at DESC` as Project[];
+    projects = await sql`SELECT * FROM projects WHERE category = ${category} ORDER BY created_at DESC` as unknown as Project[];
   } else if (featured) {
-    projects = await sql`SELECT * FROM projects WHERE featured = 1 ORDER BY created_at DESC` as Project[];
+    projects = await sql`SELECT * FROM projects WHERE featured = 1 ORDER BY created_at DESC` as unknown as Project[];
   } else {
-    projects = await sql`SELECT * FROM projects ORDER BY created_at DESC` as Project[];
+    projects = await sql`SELECT * FROM projects ORDER BY created_at DESC` as unknown as Project[];
   }
 
   return NextResponse.json(projects);

@@ -8,8 +8,8 @@ export const dynamic = 'force-dynamic';
 
 export default async function ProjectsPage() {
   const sql = getDb();
-  const projects = await sql`SELECT * FROM projects ORDER BY created_at DESC` as Project[];
-  const settingsRows = await sql`SELECT key, value FROM settings` as { key: string; value: string }[];
+  const projects = await sql`SELECT * FROM projects ORDER BY created_at DESC` as unknown as Project[];
+  const settingsRows = await sql`SELECT key, value FROM settings` as unknown as { key: string; value: string }[];
   const settings: Record<string, string> = {};
   for (const r of settingsRows) settings[r.key] = r.value;
 

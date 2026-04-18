@@ -15,7 +15,7 @@ export default async function EditProjectPage({ params }: { params: Promise<{ id
 
   const { id } = await params;
   const sql = getDb();
-  const rows = await sql`SELECT * FROM projects WHERE id = ${id}` as Project[];
+  const rows = await sql`SELECT * FROM projects WHERE id = ${id}` as unknown as Project[];
   const project = rows[0];
   if (!project) notFound();
 

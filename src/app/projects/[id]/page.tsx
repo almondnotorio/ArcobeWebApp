@@ -12,16 +12,16 @@ export const dynamic = 'force-dynamic';
 export default async function ProjectDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const sql = getDb();
-  const rows = await sql`SELECT * FROM projects WHERE id = ${id}` as Project[];
+  const rows = await sql`SELECT * FROM projects WHERE id = ${id}` as unknown as Project[];
   const project = rows[0];
   if (!project) notFound();
 
-  const settingsRows = await sql`SELECT key, value FROM settings` as { key: string; value: string }[];
+  const settingsRows = await sql`SELECT key, value FROM settings` as unknown as { key: string; value: string }[];
   const settings: Record<string, string> = {};
   for (const r of settingsRows) settings[r.key] = r.value;
 
   const images: string[] = JSON.parse(project.images || '[]');
-  const related = await sql`SELECT * FROM projects WHERE category = ${project.category} AND id != ${project.id} LIMIT 3` as Project[];
+  const related = await sql`SELECT * FROM projects WHERE category = ${project.category} AND id != ${project.id} LIMIT 3` as unknown as Project[];
 
   return (
     <div className="flex flex-col min-h-screen">

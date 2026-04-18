@@ -14,7 +14,7 @@ export default async function AdminProjectsPage() {
   if (!token || !verifyToken(token)) redirect('/admin');
 
   const sql = getDb();
-  const projects = await sql`SELECT * FROM projects ORDER BY created_at DESC` as Project[];
+  const projects = await sql`SELECT * FROM projects ORDER BY created_at DESC` as unknown as Project[];
 
   return (
     <AdminLayout>

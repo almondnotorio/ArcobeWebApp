@@ -4,11 +4,12 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter, usePathname } from 'next/navigation';
-import { LayoutDashboard, Building2, Settings, LogOut, Menu, X, ExternalLink } from 'lucide-react';
+import { LayoutDashboard, Building2, Settings, LogOut, Menu, X, ExternalLink, Layers } from 'lucide-react';
 
 const NAV = [
   { href: '/admin/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/admin/projects', label: 'Projects', icon: Building2 },
+  { href: '/admin/services', label: 'What We Build', icon: Layers },
   { href: '/admin/settings', label: 'Settings', icon: Settings },
 ];
 

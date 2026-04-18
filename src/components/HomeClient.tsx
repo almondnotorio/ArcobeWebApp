@@ -167,32 +167,43 @@ export default function HomeClient({ settings, featuredProjects }: Props) {
         </div>
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-1">
-            {MARKETS.map((market) => (
-              <Link
-                key={market.title}
-                href={market.href}
-                className="group relative h-[480px] overflow-hidden block"
-              >
-                <Image
-                  src="/hero-bg.jpg"
-                  alt={market.title}
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className={`absolute inset-0 bg-gradient-to-t ${market.gradient} transition-opacity duration-300 group-hover:opacity-90`} />
-                <div className="absolute inset-0 flex flex-col justify-end p-8">
-                  <div className="transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                    <h3 className="text-3xl font-bold text-white mb-3">{market.title}</h3>
-                    <p className="text-gray-300 text-sm leading-relaxed mb-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      {market.desc}
-                    </p>
-                    <div className="flex items-center gap-2 text-acc-gold text-sm font-bold tracking-widest uppercase">
-                      Learn More <ArrowUpRight size={16} />
+            {MARKETS.map((market, i) => {
+              const img = settings[`service_${i + 1}_image`];
+              const title = settings[`service_${i + 1}_title`] || market.title;
+              const link = settings[`service_${i + 1}_link`] || market.href;
+              return (
+                <Link
+                  key={market.title}
+                  href={link}
+                  className="group relative h-[480px] overflow-hidden block"
+                >
+                  {img ? (
+                    <Image
+                      src={img}
+                      alt={title}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 bg-acc-navy/80 flex items-center justify-center">
+                      <Building2 size={48} className="text-white/20" />
+                    </div>
+                  )}
+                  <div className={`absolute inset-0 bg-gradient-to-t ${market.gradient} transition-opacity duration-300 group-hover:opacity-90`} />
+                  <div className="absolute inset-0 flex flex-col justify-end p-8">
+                    <div className="transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                      <h3 className="text-3xl font-bold text-white mb-3">{title}</h3>
+                      <p className="text-gray-300 text-sm leading-relaxed mb-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        {market.desc}
+                      </p>
+                      <div className="flex items-center gap-2 text-acc-gold text-sm font-bold tracking-widest uppercase">
+                        Learn More <ArrowUpRight size={16} />
+                      </div>
                     </div>
                   </div>
-                </div>
-              </Link>
-            ))}
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>

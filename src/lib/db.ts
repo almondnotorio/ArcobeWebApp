@@ -68,6 +68,15 @@ async function initSchema(sql: any) {
     ['contact_email', 'info@arcobeconstruction.com'],
     ['contact_phone', '+63 2 8XXX XXXX'],
     ['contact_address', 'Metro Manila, Philippines'],
+    ['service_1_title', 'Buildings'],
+    ['service_1_image', ''],
+    ['service_1_link', '/projects?category=Commercial'],
+    ['service_2_title', 'Civil'],
+    ['service_2_image', ''],
+    ['service_2_link', '/projects?category=Infrastructure'],
+    ['service_3_title', 'Industrial'],
+    ['service_3_image', ''],
+    ['service_3_link', '/projects?category=Industrial'],
   ];
 
   for (const [key, value] of defaults) {

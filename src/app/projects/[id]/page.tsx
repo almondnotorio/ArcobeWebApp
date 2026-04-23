@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft, MapPin, Calendar, Building2, Users, Ruler } from 'lucide-react';
 import { Project } from '@/types';
+import ProjectGallery from '@/components/ProjectGallery';
 
 export const dynamic = 'force-dynamic';
 
@@ -60,18 +61,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
               <h2 className="text-2xl font-bold text-acc-navy mb-4">Project Overview</h2>
               <p className="text-gray-600 leading-relaxed text-lg">{project.description}</p>
 
-              {images.length > 0 && (
-                <div className="mt-10">
-                  <h3 className="text-xl font-bold text-acc-navy mb-4">Project Gallery</h3>
-                  <div className="grid grid-cols-2 gap-4">
-                    {images.map((img, i) => (
-                      <div key={i} className="relative h-48 overflow-hidden">
-                        <Image src={img} alt={`Gallery ${i + 1}`} fill className="object-cover hover:scale-105 transition-transform" />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
+              <ProjectGallery images={images} title={project.title} />
             </div>
 
             <div className="space-y-6">
